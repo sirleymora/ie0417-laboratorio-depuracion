@@ -1,4 +1,4 @@
-# Parte 5: análisis de memoria con valgrind
+# Parte 5
 
 ## Ejercicio 1: pérdida de memoria
 
@@ -27,11 +27,11 @@ int main() {
 
 ### Qué hace el programa
 
-La función `crear_arreglo` reserva memoria dinámica para 10 enteros con `new int[10]`, los llena con los valores 0, 2, 4, ..., 18 e imprime el primero. `main` solo llama a esa función.
+La función `crear_arreglo` reserva memoria dinámica para 10 enteros con `new int[10]`. 
 
 ### Error de memoria
 
-La memoria reservada con `new[]` nunca se libera con `delete[]`. Cuando la función termina, el puntero `datos` desaparece, pero la memoria sigue reservada y ya no hay forma de acceder a ella ni de liberarla. Eso es una pérdida de memoria (memory leak).
+La memoria reservada con `new[]` nunca se libera con `delete[]`. Cuando la función termina, el puntero `datos` desaparece, pero la memoria sigue reservada y ya no hay forma de acceder a ella ni de liberarla. Eso es una memory leak.
 
 ### Compilación y ejecución normal
 
@@ -122,4 +122,4 @@ Ahora hay 3 reservas y 3 liberaciones, no queda memoria en uso y no hay errores.
 2. **¿Por qué el programa puede terminar aparentemente bien aunque tenga una pérdida de memoria?** Porque la fuga no causa un error inmediato: el programa sigue ejecutándose normalmente y, al terminar, el sistema operativo recupera toda la memoria del proceso. El problema no se ve en la salida, solo se nota con herramientas como `valgrind` o cuando el programa corre mucho tiempo.
 3. **¿Qué significa liberar memoria dinámica?** Devolverle al sistema la memoria que se reservó con `new`, usando `delete` (o `delete[]`), para que pueda reutilizarse.
 4. **¿Por qué se usa `delete[]` y no solo `delete`?** Porque la memoria se reservó como arreglo con `new[]`, y debe liberarse con `delete[]`. Usar solo `delete` en un arreglo es comportamiento indefinido, ya que no se liberan ni se destruyen correctamente todos los elementos.
-5. **¿Qué tipo de problemas podrían aparecer en programas grandes si no se libera memoria?** El consumo de memoria crece con el tiempo, el programa se vuelve más lento, puede afectar a otros programas y, si corre mucho tiempo (como un servidor), puede quedarse sin memoria y fallar.
+5. **¿Qué tipo de problemas podrían aparecer en programas grandes si no se libera memoria?** El consumo de memoria crece con el tiempo, el programa se vuelve más lento, puede afectar a otros programas y, si corre mucho tiempo, puede quedarse sin memoria y fallar.
