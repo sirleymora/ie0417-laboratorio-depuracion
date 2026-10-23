@@ -70,7 +70,7 @@ laboratorio-depuracion/
 |---------|-------|-----------------------|------------|
 | `01_error_sintaxis.cpp` | Falta un `;` | Compilador (`g++`) | Agregar el `;` |
 | `02_error_logico.cpp` | Promedio incorrecto por división entera | Ejecución normal | Convertir a `double` antes de dividir |
-| `03_gdb_basico.cpp` | Sin error (programa correcto, se usa para practicar) | `gdb` | No requiere corrección |
+| `03_gdb_basico.cpp` | Sin error | `gdb` | No requiere corrección |
 | `04_gdb_funciones.cpp` | División entre cero | `gdb` | Validar que el divisor no sea cero |
 | `05_memory_leak.cpp` | Pérdida de memoria | `valgrind` | Agregar `delete[]` |
 | `06_invalid_access.cpp` | Acceso fuera de los límites de un arreglo | `valgrind` | Corregir la condición del ciclo (`i < 5`) |
@@ -125,4 +125,4 @@ Los ejecutables generados no se incluyen en el repositorio.
 
 ## Conclusiones
 
-_(Escribir con tus palabras, en 4 o 5 líneas. Ideas: que compilar sin errores no garantiza que el programa sea correcto; qué tipo de error detecta mejor cada herramienta (`gdb` para seguir la ejecución paso a paso, `valgrind` para fugas y accesos inválidos, AddressSanitizer para detener el programa en el error con línea exacta, ThreadSanitizer y Helgrind para condiciones de carrera); y la importancia de observar y reproducir el error antes de corregirlo.)_
+Este laboratorio me mostró que un programa que compila no necesariamente es correcto. Varios de los ejercicios se ejecutaban sin problemas aparentes, pero daban resultados incorrectos o tenían errores de memoria que el programa no reportaba por sí solo. Cada herramienta resultó útil para un tipo distinto de problema. `gdb` sirvió para seguir la ejecución línea por línea y ver el valor de las variables, lo que ayuda a entender en qué punto algo deja de ser lo esperado. `valgrind` permitió encontrar pérdidas de memoria y accesos inválidos sin recompilar. AddressSanitizer detuvo el programa justo en el error, con la línea exacta, y ThreadSanitizer y Helgrind detectaron condiciones de carrera aunque el resultado saliera bien en esa ejecución.
