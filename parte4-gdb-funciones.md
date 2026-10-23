@@ -1,4 +1,4 @@
-# Parte 4: step, next y backtrace
+# Parte 4
 
 ## Código original
 
@@ -170,6 +170,6 @@ El programa ya no falla: detecta el divisor cero, avisa con un mensaje y contin�
 
 1. **¿Qué diferencia observó entre `next` y `step`?** `next` ejecuta la línea sin entrar a las funciones, y `step` sí entra. Para ver qué pasa dentro de `calcular` y `dividir` tuve que usar `step`.
 2. **¿Para qué sirve `backtrace`?** Muestra la pila de llamadas, es decir, qué funciones se fueron llamando una a otra hasta llegar al punto donde está detenido el programa. Sirve para saber quién llamó a la función donde ocurre el problema y con qué valores.
-3. **¿Cuál fue la causa del error?** `divisor` valía 0 (porque `x - 5` con `x = 5` da 0) y ese valor llegó a `dividir`, que dividió 100 entre 0.
+3. **¿Cuál fue la causa del error?** `divisor` valía 0 y ese valor llegó a `dividir`, que dividió 100 entre 0.
 4. **¿Por qué este error es de tiempo de ejecución?** Porque el código es válido y compila bien. El problema solo aparece al ejecutarlo, cuando el valor de `divisor` resulta ser 0, y el compilador no puede saberlo de antemano.
-5. **¿Cómo podría prevenirse este tipo de error desde el diseño del programa?** Validando los datos antes de usarlos (en este caso, comprobar que el divisor no sea cero antes de dividir), definiendo claramente qué valores acepta cada función y decidiendo cómo se reportan los errores, por ejemplo con mensajes, códigos de error o excepciones.
+5. **¿Cómo podría prevenirse este tipo de error desde el diseño del programa?** Validando los datos antes de usarlos, definiendo claramente qué valores acepta cada función y decidiendo cómo se reportan los errores.
