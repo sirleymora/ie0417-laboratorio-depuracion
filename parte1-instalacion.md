@@ -1,4 +1,4 @@
-# Parte 1: instalación y verificación del ambiente
+# Parte 1
 
 ## Ambiente utilizado
 
@@ -59,9 +59,9 @@ El programa compiló sin errores ni advertencias y se ejecutó correctamente, po
 
 ## Para qué sirve cada herramienta
 
-- **g++:** es el compilador de C++. Traduce el código fuente (`.cpp`) a un programa ejecutable que el computador puede correr.
-- **gdb:** es un depurador. Permite ejecutar un programa paso a paso, detenerlo en puntos específicos (breakpoints), revisar el valor de las variables y ver la pila de llamadas mientras corre.
-- **valgrind:** es una herramienta de análisis que ejecuta el programa y vigila cómo usa la memoria. Detecta, por ejemplo, pérdidas de memoria y accesos inválidos, y también puede analizar problemas con hilos (Helgrind).
+- **g++:** es el compilador de C++. Traduce el código fuente a un programa ejecutable que el computador puede correr.
+- **gdb:** es un depurador. Permite ejecutar un programa paso a paso, detenerlo en breakpoints, revisar el valor de las variables y ver la pila de llamadas mientras corre.
+- **valgrind:** es una herramienta de análisis que ejecuta el programa y vigila cómo usa la memoria. Detecta, por ejemplo, pérdidas de memoria y accesos inválidos, y también puede analizar problemas con hilos.
 
 ## Preguntas de reflexión
 
