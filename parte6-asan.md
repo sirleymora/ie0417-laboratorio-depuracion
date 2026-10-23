@@ -1,4 +1,4 @@
-# Parte 6: AddressSanitizer
+# Parte 6
 
 En esta parte usé AddressSanitizer (ASan), una herramienta que se activa al compilar con `-fsanitize=address` y detecta errores de memoria mientras el programa se ejecuta. Además, comparé su reporte con el de `valgrind`.
 
@@ -73,7 +73,7 @@ ASan detuvo el programa en el momento del error y mostró tres cosas:
 
 ## Qué significa `heap-use-after-free`
 
-Significa que el programa usó (leyó o escribió) un bloque de memoria del heap después de haberlo liberado. El puntero sigue guardando la dirección vieja, pero esa memoria ya no pertenece al programa y puede estar vacía o reutilizada por otra cosa.
+Significa que el programa usó un bloque de memoria del heap después de haberlo liberado. El puntero sigue guardando la dirección vieja, pero esa memoria ya no pertenece al programa y puede estar vacía o reutilizada por otra cosa.
 
 ## Comparación con valgrind
 
@@ -137,5 +137,5 @@ El programa imprime el valor correcto y ASan ya no reporta ningún error.
 1. **¿Qué significa usar memoria después de liberarla?** Que el programa accede, a través de un puntero, a memoria que ya devolvió al sistema con `delete`. Ese puntero queda "colgante": todavía guarda la dirección, pero la memoria ya no es válida para el programa.
 2. **¿Por qué este error puede ser difícil de detectar sin herramientas?** Porque el programa no falla de forma evidente. Aquí compiló y terminó normalmente, pero el resultado fue basura (`-2140179392`) en una ejecución y `42` bajo `valgrind`. Como el resultado depende de qué haya pasado con esa memoria, el error puede pasar desapercibido o aparecer solo a veces.
 3. **¿Qué ventaja tiene AddressSanitizer sobre ejecutar el programa normalmente?** Detecta el error en el momento en que ocurre, detiene el programa e indica la línea exacta del uso inválido, de la liberación y de la reserva. Ejecutando normalmente no se ve ningún aviso, solo un resultado incorrecto que hay que sospechar.
-4. **¿Qué diferencia observó entre el reporte de `valgrind` y el de AddressSanitizer?** Ambos señalan las mismas tres líneas (uso, liberación y reserva). ASan se activa al compilar con `-fsanitize=address`, detiene el programa en el primer error y muestra además un volcado del estado de la memoria. `valgrind` analiza el ejecutable sin cambiar la compilación, deja que el programa termine y reporta el error con su propio formato (`Invalid read`, `free'd`, `alloc'd`).
-5. **¿Por qué es buena práctica asignar `nullptr` después de liberar un puntero?** Porque después de `delete` el puntero sigue apuntando a memoria inválida. Con `nullptr`, un uso accidental provoca un fallo inmediato y fácil de detectar (en vez de leer datos basura sin avisar) y además permite comprobar si el puntero es válido (`if (numero != nullptr)`).
+4. **¿Qué diferencia observó entre el reporte de `valgrind` y el de AddressSanitizer?** Ambos señalan las mismas tres líneas. ASan se activa al compilar con `-fsanitize=address`, detiene el programa en el primer error y muestra además un volcado del estado de la memoria. `valgrind` analiza el ejecutable sin cambiar la compilación, deja que el programa termine y reporta el error con su propio formato (`Invalid read`, `free'd`, `alloc'd`).
+5. **¿Por qué es buena práctica asignar `nullptr` después de liberar un puntero?** Porque después de `delete` el puntero sigue apuntando a memoria inválida. Con `nullptr`, un uso accidental provoca un fallo inmediato y fácil de detectar y además permite comprobar si el puntero es válido (`if (numero != nullptr)`).
