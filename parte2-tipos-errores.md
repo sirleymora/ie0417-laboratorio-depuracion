@@ -1,4 +1,4 @@
-# Parte 2: tipos de errores
+# Parte 2
 
 En esta parte trabajé con un error de sintaxis y un error lógico. El primero lo detecta el compilador antes de ejecutar el programa. El segundo no lo detecta nadie automáticamente: el programa compila y corre, pero da un resultado incorrecto.
 
