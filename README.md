@@ -1,6 +1,6 @@
 # Laboratorio: depuración con gdb, valgrind y sanitizers
 
-## Estudiante
+Estudiante:
 
 Nombre: Sirley Mora Chavarría
 
