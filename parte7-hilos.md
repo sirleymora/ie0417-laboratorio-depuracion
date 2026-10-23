@@ -1,4 +1,4 @@
-# Parte 7: análisis de hilos y condiciones de carrera
+# Parte 7
 
 ## Código con condición de carrera
 
@@ -230,7 +230,7 @@ El resultado es 200000, Helgrind reporta 0 errores y ThreadSanitizer no emite ni
 ## Preguntas de reflexión
 
 1. **¿Por qué `contador++` no es una operación segura entre varios hilos?** Porque no es una sola operación: se compone de leer el valor, sumarle 1 y escribirlo de nuevo. Si dos hilos leen el mismo valor antes de que alguno escriba, ambos escriben el mismo resultado y se pierde un incremento, como pasó con el valor 166199.
-2. **¿Qué significa que dos hilos accedan a la misma variable compartida?** Que ambos leen o modifican la misma posición de memoria (aquí `contador`, una variable global), por lo que lo que haga uno afecta lo que ve el otro.
+2. **¿Qué significa que dos hilos accedan a la misma variable compartida?** Que ambos leen o modifican la misma posición de memoria, por lo que lo que haga uno afecta lo que ve el otro.
 3. **¿Qué problema resuelve `std::mutex`?** Garantiza exclusión mutua: solo un hilo a la vez puede ejecutar la parte protegida del código, así que no se mezclan los accesos a la variable compartida.
 4. **¿Qué hace `std::lock_guard`?** Bloquea el mutex al crearse y lo desbloquea automáticamente al salir del bloque donde se declaró, incluso si hay una excepción, para que no se olvide liberarlo.
 5. **¿Por qué los errores de concurrencia pueden ser difíciles de reproducir?** Porque dependen de cómo el sistema operativo intercala los hilos, que cambia en cada ejecución. En mis pruebas, 4 de 5 ejecuciones dieron el resultado correcto aunque el error existía, así que el problema puede aparecer solo a veces.
