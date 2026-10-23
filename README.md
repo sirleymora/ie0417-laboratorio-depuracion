@@ -70,7 +70,7 @@ laboratorio-depuracion/
 |---------|-------|-----------------------|------------|
 | `01_error_sintaxis.cpp` | Falta un `;` | Compilador (`g++`) | Agregar el `;` |
 | `02_error_logico.cpp` | Promedio incorrecto por división entera | Ejecución normal | Convertir a `double` antes de dividir |
-| `03_gdb_basico.cpp` | _(completar)_ | `gdb` | _(completar)_ |
+| `03_gdb_basico.cpp` | Sin error (programa correcto, se usa para practicar) | `gdb` | No requiere corrección |
 | `04_gdb_funciones.cpp` | División entre cero | `gdb` | Validar que el divisor no sea cero |
 | `05_memory_leak.cpp` | Pérdida de memoria | `valgrind` | Agregar `delete[]` |
 | `06_invalid_access.cpp` | Acceso fuera de los límites de un arreglo | `valgrind` | Corregir la condición del ciclo (`i < 5`) |
