@@ -1,4 +1,4 @@
-# Parte 3: introducción a gdb
+# Parte 3
 
 ## Código
 
@@ -49,8 +49,6 @@ Total: 20
 gdb -q ./gdb_basico
 ```
 
-Antes de empezar desactivé dos avisos que interrumpían la sesión: la pregunta de `debuginfod` y la paginación de la salida (`--Type <RET> for more`).
-
 ```text
 (gdb) set debuginfod enabled off
 (gdb) set pagination off
@@ -90,7 +88,7 @@ Total: 20
 ## Qué hace cada comando
 
 - **`-g` (al compilar):** agrega información de depuración al ejecutable, como los nombres de las variables y la relación entre las instrucciones y las líneas del código. Sin ella, `gdb` no podría mostrar los nombres ni los números de línea.
-- **`break main`:** crea un breakpoint al inicio de la función `main`. El programa se va a detener ahí cuando se ejecute.
+- **`break main`:** crea un breakpoint al inicio de la función `main`. 
 - **`run`:** inicia la ejecución del programa dentro de `gdb`. Se detiene en el primer breakpoint que encuentre.
 - **`next`:** ejecuta la línea actual y se detiene en la siguiente, sin entrar a las funciones que se llamen en esa línea.
 - **`print`:** muestra el valor de una variable en ese momento de la ejecución.
@@ -108,7 +106,7 @@ Cada variable ya tenía su valor porque la línea que la asigna se había ejecut
 
 ## Preguntas de reflexión
 
-1. **¿Qué es un breakpoint?** Es un punto del programa donde se le pide al depurador que detenga la ejecución. Permite revisar el estado del programa (variables, línea actual) justo en ese punto.
+1. **¿Qué es un breakpoint?** Es un punto del programa donde se le pide al depurador que detenga la ejecución. Permite revisar el estado del programa justo en ese punto.
 2. **¿Qué diferencia hay entre ejecutar el programa normalmente y ejecutarlo dentro de `gdb`?** Normalmente el programa corre de principio a fin y solo se ve su salida final. Dentro de `gdb` puedo detenerlo, avanzar línea por línea e inspeccionar variables mientras se ejecuta.
 3. **¿Qué ventaja tiene inspeccionar variables mientras el programa se ejecuta?** Permite ver el valor real de cada variable en cada paso, así que se puede encontrar en qué punto un valor deja de ser el esperado, en lugar de adivinar la causa solo con el resultado final.
 4. **¿Por qué `next` no entra dentro de las funciones?** Porque `next` ejecuta la línea completa como un solo paso, incluyendo las funciones que llame, sin mostrar lo que pasa dentro de ellas. En la línea `int doble = duplicar(numero);`, `next` ejecutó `duplicar` completa y pasó a la siguiente línea de `main`. Para entrar a una función existe `step`.
